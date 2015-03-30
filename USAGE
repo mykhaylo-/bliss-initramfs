@@ -276,3 +276,14 @@ filesystem hdd drivers, dm-crypt for luks support driver, ohci/ehci/xhci
 usb 1.1,2.0,3.0 drivers and the usb-storage driver. All the dependencies
 are automatically gathered and compressed by the initramfs, and automatically
 loaded at boot in that order.
+
+=======================================
+Firmware Support:
+=======================================
+If your hardware needs a firmware to work and you want this firmware to be included
+into initramfs, please make corresponding changes to 
+/opt/bliss-initramfs/pkg/hooks/Firmware.py
+If you know exact firmware file which your hardware need, then you can
+put its filename directly into files array. If you then can set _copy_all to 1 
+and all your firmwares will be included into initramfs.
+Don't forget to set _use to 1 to enable it.

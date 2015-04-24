@@ -131,6 +131,9 @@ ParseKernelParameters()
         recover)
             _recover=1
             ;;
+        resume=*)
+            _resume=1
+            ;;
         su)
             _su=1
             ;;
@@ -627,6 +630,12 @@ fi
 
 # Run all the triggers (Like LUKS, ZFS)
 CheckTriggers
+
+# Resume after hibernate
+if [[ ${_resume} -eq 1 ]]; then
+    Info "Resuming from hibernation..."
+    echo 1 > /sys/power/tuxonice/do_resume
+fi
 
 # Mounts your root device
 MountRoot
